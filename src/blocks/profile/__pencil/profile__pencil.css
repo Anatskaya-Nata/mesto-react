@@ -1,0 +1,8 @@
+.profile__pencil {
+	position: absolute;
+	width: 26px;
+	height: 26px;
+	left: 47px;
+	bottom: 47px;
+	display: none;
+}

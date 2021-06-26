@@ -1,0 +1,19 @@
+.profile__block{
+max-width: 282px;
+display: flex;
+flex-direction: column;
+margin-bottom: 36px;
+
+}
+
+@media screen and (min-width: 1280px){
+    .profile__block{
+
+      /* position: absolute;
+        top: 22px;
+        left: 150px;*/
+        justify-content: flex-start;
+        max-width: 336px;
+        margin: 0 244px 0 0; 
+}
+}

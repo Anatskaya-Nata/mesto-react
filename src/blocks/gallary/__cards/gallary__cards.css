@@ -1,0 +1,14 @@
+.gallary__cards{
+list-style: none;
+padding: 0;
+}
+
+@media screen and (min-width: 1280px){
+    .gallary__cards{
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+flex-wrap: wrap;
+margin-top: 51px;
+        }   
+}

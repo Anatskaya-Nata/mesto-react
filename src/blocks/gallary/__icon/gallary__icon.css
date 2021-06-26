@@ -1,0 +1,20 @@
+.gallary__icon{
+    background-image: url(../../../images/Vector_heart.svg);
+    background-repeat: no-repeat;
+    background-size: 22px 19px;
+    width: 25px;
+    height: 21px;
+    padding: 0;
+    margin: 22px 22px 3px 0;
+    border: none;
+    /*padding: 2px 2px 2px 2px;*/
+    background-position: center;
+    background-color: #FFFFFF;
+
+    
+
+}
+.gallary__icon:hover{
+    opacity: 0.6;
+    cursor: pointer;
+}

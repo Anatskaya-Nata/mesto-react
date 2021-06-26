@@ -1,0 +1,10 @@
+.popup__button_approval{
+    padding: 14px 120px 14px 120px;
+    margin-top: 0;
+}
+
+@media screen and (min-width: 1280px){
+    .popup__button_approval{
+        padding: 14px 167.5px 14px 167.5px;  
+    }  
+}

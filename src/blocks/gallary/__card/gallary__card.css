@@ -1,0 +1,22 @@
+.gallary__card{
+   
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    align-items: flex-start;
+    background: #FFFFFF;
+    border-radius: 10px;
+    margin-bottom: 20px;
+
+}
+
+.gallary:hover{
+
+    cursor: pointer;
+    }
+@media screen and (min-width: 1280px){
+    .gallary__card{
+    max-width: 282px;
+
+}
+}

@@ -1,0 +1,155 @@
+import React from 'react'
+import '../index.css'
+import Header from './landing/Header'
+import Main from './landing/Main'
+import Footer from './landing/Footer'
+import PopupWithForm from './landing/PopupWithForm'
+import ImagePopup from './landing/ImagePopup'
+
+function App() {
+	const [isEditAvatarPopupOpen, setisEditAvatarPopupOpen] =
+		React.useState(false)
+	const [isAddPlacePopupOpen, setisAddPlacePopupOpen] = React.useState(false)
+	const [isEditProfilePopupOpen, setisEditProfilePopupOpen] =
+		React.useState(false)
+	const [isImagePopupOpen, setImagePopupOpen] = React.useState(false)
+	const [selectedCard, setSelectedCard] = React.useState({})
+
+	const handleEditAvatarClick = () => {
+		setisEditAvatarPopupOpen((isEditAvatarPopupOpen) => !isEditAvatarPopupOpen)
+	}
+	const handleAddPlaceClick = () => {
+		setisAddPlacePopupOpen((isAddPlacePopupOpen) => !isAddPlacePopupOpen)
+	}
+	const handleEditProfileClick = () => {
+		setisEditProfilePopupOpen(
+			(isEditProfilePopupOpen) => !isEditProfilePopupOpen
+		)
+	}
+
+	function handleCardClick(item) {
+		setImagePopupOpen((isImagePopupOpen) => !isImagePopupOpen)
+		setSelectedCard(item)
+	}
+
+	const closeAllPopups = () => {
+		setisEditProfilePopupOpen(false)
+		setisAddPlacePopupOpen(false)
+		setisEditAvatarPopupOpen(false)
+		setImagePopupOpen(false)
+		setSelectedCard(false)
+	}
+
+	return (
+		<div className="page">
+			<Header />
+			<Main
+				onEditProfile={handleEditProfileClick}
+				onAddPlace={handleAddPlaceClick}
+				onEditAvatar={handleEditAvatarClick}
+				onCardClick={handleCardClick}
+			/>
+
+			<Footer />
+			<PopupWithForm
+				name="edit"
+				title="Редактировать профиль"
+				textButton="Cохранить"
+				isOpen={isEditProfilePopupOpen ? 'popup_active' : ''}
+				onClose={closeAllPopups}
+				children={
+					<>
+						<input
+							id="text-input"
+							type="text"
+							className="popup__info  popup__info_input_name"
+							name="nick"
+							placeholder="Имя"
+							defaultValue=" "
+							required
+							minLength="2"
+							maxLength="40"
+						/>
+						<span className="popup__info-error text-input-error"></span>
+
+						<input
+							id="job-input"
+							type="text"
+							name="about"
+							placeholder="О себе"
+							defaultValue=" "
+							required
+							minLength="2"
+							maxLength="200"
+							className="popup__info popup__info_input_job"
+						/>
+						<span className="popup__info-error job-input-error"></span>
+					</>
+				}
+			/>
+			<PopupWithForm
+				name="place"
+				title="Новое место"
+				textButton="Создать"
+				isOpen={isAddPlacePopupOpen ? 'popup_active' : ''}
+				onClose={closeAllPopups}
+				children={
+					<>
+						<input
+							id="place-input"
+							type="text"
+							name="place"
+							placeholder=" Название"
+							required
+							minLength="2"
+							maxLength="30"
+							className="popup__info popup__info_input_place"
+						/>
+						<span className="popup__info-error place-input-error "></span>
+
+						<input
+							id="link-input"
+							type="url"
+							name="link"
+							placeholder="Ссылка на картинку"
+							required
+							className="popup__info popup__info_input_link"
+						/>
+						<span className="popup__info-error link-input-error"></span>
+					</>
+				}
+			/>
+			<PopupWithForm name="approval" title="Вы уверены? " textButton="Да" />
+			<PopupWithForm
+				name="avatar"
+				//isEditAvatarPopupOpen={true}
+				title="Обновить аватар"
+				textButton="Cохранить"
+				isOpen={isEditAvatarPopupOpen ? 'popup_active' : ''}
+				onClose={closeAllPopups}
+				children={
+					<>
+						<input
+							id="avatar-input"
+							type="url"
+							name="link"
+							placeholder="Ссылка на картинку"
+							required
+							className="popup__info popup__info_input_avatar"
+						/>
+						<span className="popup__info-error link-input-error"></span>
+					</>
+				}
+			/>
+			<ImagePopup
+				name="image"
+				isOpen={isImagePopupOpen ? 'popup_active' : ''}
+				//isOpen={isImagePopupOpen && `active`}
+				onClose={closeAllPopups}
+				card={selectedCard}
+			/>
+		</div>
+	)
+}
+
+export default App
