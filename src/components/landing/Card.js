@@ -1,4 +1,4 @@
-import DeliteButton from '../../images/delete.svg'
+import deliteButton from '../../images/delete.svg'
 
 function Card(props) {
 	function handleCardClick() {
@@ -12,18 +12,17 @@ function Card(props) {
 				src={props.card.link}
 				className="gallary__item"
 				alt={props.card.name}
-				style={{ backgroundImage: `url(${props.card.link})` }}
 				onClick={handleCardClick}
 			/>
 			<button className="gallary__delete" type="button">
-				<img src={DeliteButton} alt="корзина" />
+				<img src={deliteButton} alt="корзина" />
 			</button>
 
 			<div className="gallary__info">
 				<p className="gallary__text">{props.card.name}</p>
 				<div className="gallary__counter">
 					<button className="gallary__icon" type="button"></button>
-					<p className="gallary__quantity">0</p>
+					<p className="gallary__quantity">{props.card.likes.length}</p>
 				</div>
 			</div>
 		</li>

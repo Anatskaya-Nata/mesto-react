@@ -37,117 +37,117 @@ function App() {
 		setisAddPlacePopupOpen(false)
 		setisEditAvatarPopupOpen(false)
 		setImagePopupOpen(false)
-		setSelectedCard(false)
+		setSelectedCard({})
 	}
 
 	return (
-		<div className="page">
-			<Header />
-			<Main
-				onEditProfile={handleEditProfileClick}
-				onAddPlace={handleAddPlaceClick}
-				onEditAvatar={handleEditAvatarClick}
-				onCardClick={handleCardClick}
-			/>
+		<div style={{ background: '#000' }}>
+			<div className="page">
+				<Header />
+				<Main
+					onEditProfile={handleEditProfileClick}
+					onAddPlace={handleAddPlaceClick}
+					onEditAvatar={handleEditAvatarClick}
+					onCardClick={handleCardClick}
+				/>
 
-			<Footer />
-			<PopupWithForm
-				name="edit"
-				title="Редактировать профиль"
-				textButton="Cохранить"
-				isOpen={isEditProfilePopupOpen ? 'popup_active' : ''}
-				onClose={closeAllPopups}
-				children={
-					<>
-						<input
-							id="text-input"
-							type="text"
-							className="popup__info  popup__info_input_name"
-							name="nick"
-							placeholder="Имя"
-							defaultValue=" "
-							required
-							minLength="2"
-							maxLength="40"
-						/>
-						<span className="popup__info-error text-input-error"></span>
+				<Footer />
+				<PopupWithForm
+					name="edit"
+					title="Редактировать профиль"
+					textButton="Cохранить"
+					isOpen={isEditProfilePopupOpen}
+					onClose={closeAllPopups}
+					children={
+						<>
+							<input
+								id="text-input"
+								type="text"
+								className="popup__info  popup__info_input_name"
+								name="nick"
+								placeholder="Имя"
+								required
+								minLength="2"
+								maxLength="40"
+							/>
+							<span className="popup__info-error text-input-error"></span>
 
-						<input
-							id="job-input"
-							type="text"
-							name="about"
-							placeholder="О себе"
-							defaultValue=" "
-							required
-							minLength="2"
-							maxLength="200"
-							className="popup__info popup__info_input_job"
-						/>
-						<span className="popup__info-error job-input-error"></span>
-					</>
-				}
-			/>
-			<PopupWithForm
-				name="place"
-				title="Новое место"
-				textButton="Создать"
-				isOpen={isAddPlacePopupOpen ? 'popup_active' : ''}
-				onClose={closeAllPopups}
-				children={
-					<>
-						<input
-							id="place-input"
-							type="text"
-							name="place"
-							placeholder=" Название"
-							required
-							minLength="2"
-							maxLength="30"
-							className="popup__info popup__info_input_place"
-						/>
-						<span className="popup__info-error place-input-error "></span>
+							<input
+								id="job-input"
+								type="text"
+								name="about"
+								placeholder="О себе"
+								required
+								minLength="2"
+								maxLength="200"
+								className="popup__info popup__info_input_job"
+							/>
+							<span className="popup__info-error job-input-error"></span>
+						</>
+					}
+				/>
+				<PopupWithForm
+					name="place"
+					title="Новое место"
+					textButton="Создать"
+					isOpen={isAddPlacePopupOpen}
+					onClose={closeAllPopups}
+					children={
+						<>
+							<input
+								id="place-input"
+								type="text"
+								name="place"
+								placeholder=" Название"
+								required
+								minLength="2"
+								maxLength="30"
+								className="popup__info popup__info_input_place"
+							/>
+							<span className="popup__info-error place-input-error "></span>
 
-						<input
-							id="link-input"
-							type="url"
-							name="link"
-							placeholder="Ссылка на картинку"
-							required
-							className="popup__info popup__info_input_link"
-						/>
-						<span className="popup__info-error link-input-error"></span>
-					</>
-				}
-			/>
-			<PopupWithForm name="approval" title="Вы уверены? " textButton="Да" />
-			<PopupWithForm
-				name="avatar"
-				//isEditAvatarPopupOpen={true}
-				title="Обновить аватар"
-				textButton="Cохранить"
-				isOpen={isEditAvatarPopupOpen ? 'popup_active' : ''}
-				onClose={closeAllPopups}
-				children={
-					<>
-						<input
-							id="avatar-input"
-							type="url"
-							name="link"
-							placeholder="Ссылка на картинку"
-							required
-							className="popup__info popup__info_input_avatar"
-						/>
-						<span className="popup__info-error link-input-error"></span>
-					</>
-				}
-			/>
-			<ImagePopup
-				name="image"
-				isOpen={isImagePopupOpen ? 'popup_active' : ''}
-				//isOpen={isImagePopupOpen && `active`}
-				onClose={closeAllPopups}
-				card={selectedCard}
-			/>
+							<input
+								id="link-input"
+								type="url"
+								name="link"
+								placeholder="Ссылка на картинку"
+								required
+								className="popup__info popup__info_input_link"
+							/>
+							<span className="popup__info-error link-input-error"></span>
+						</>
+					}
+				/>
+				<PopupWithForm name="approval" title="Вы уверены? " textButton="Да" />
+				<PopupWithForm
+					name="avatar"
+					//isEditAvatarPopupOpen={true}
+					title="Обновить аватар"
+					textButton="Cохранить"
+					isOpen={isEditAvatarPopupOpen}
+					onClose={closeAllPopups}
+					children={
+						<>
+							<input
+								id="avatar-input"
+								type="url"
+								name="link"
+								placeholder="Ссылка на картинку"
+								required
+								className="popup__info popup__info_input_avatar"
+							/>
+							<span className="popup__info-error link-input-error"></span>
+						</>
+					}
+				/>
+				<ImagePopup
+					name="image"
+					isOpen={isImagePopupOpen ? 'popup_active' : ''}
+					//isOpen={isImagePopupOpen && `active`}
+					onClose={closeAllPopups}
+					card={selectedCard}
+				/>
+			</div>
 		</div>
 	)
 }

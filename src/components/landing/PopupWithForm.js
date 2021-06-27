@@ -1,7 +1,11 @@
 import React from 'react'
 function PopupWithForm(props) {
 	return (
-		<section className={`popup popup_theme_${props.name} ${props.isOpen}`}>
+		<section
+			className={`popup popup_theme_${props.name} ${
+				props.isOpen ? 'popup_active' : ''
+			}`}
+		>
 			<div className={`popup__container popup__container_theme_${props.name}`}>
 				<form className={`popup__form popup__form_theme_${props.name}`}>
 					<h2 className={`popup__title popup__title_${props.name}`}>

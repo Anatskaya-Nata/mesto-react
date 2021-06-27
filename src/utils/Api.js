@@ -14,16 +14,7 @@ class Api {
 			headers: {
 				authorization: this._token,
 			},
-		}).then((res) => {
-			if (!res.ok) {
-				return Promise.reject(`Ошибка: ${res.status}`)
-			}
-			return res.json()
-		})
-
-		/* .catch((err) => {
-        console.log('Ошибка. Запрос не выполнен: ', err);
-      })*/
+		}).then(this._checkResponse)
 	}
 	getUserData() {
 		return fetch(`${this._address}/users/me`, {
@@ -31,15 +22,7 @@ class Api {
 			headers: {
 				authorization: this._token,
 			},
-		}).then((res) => {
-			if (!res.ok) {
-				return Promise.reject(`Ошибка: ${res.status}`)
-			}
-			return res.json()
-		})
-		/* .catch((err) => {
-        console.log('Ошибка. Запрос не выполнен: ', err);
-      })*/
+		}).then(this._checkResponse)
 	}
 
 	setUserData(data) {
@@ -54,16 +37,7 @@ class Api {
 				about: data.about,
 				avatar: data.avatar,
 			}),
-		}).then((res) => {
-			if (!res.ok) {
-				return Promise.reject(`Ошибка: ${res.status}`)
-			}
-			return res.json()
-		})
-
-		/* .catch((err) => {
-        console.log('Ошибка. Запрос не выполнен: ', err);
-      })*/
+		}).then(this._checkResponse)
 	}
 
 	setLike(id) {
@@ -73,13 +47,7 @@ class Api {
 				authorization: this._token,
 				'Content-Type': 'application/json',
 			},
-		}).then((res) => {
-			if (!res.ok) {
-				return Promise.reject(`Ошибка: ${res.status}`)
-			}
-			return res.json()
-		})
-		/* .catch(err => console.log('Ошибка. Запрос не выполнен: ', err))*/
+		}).then(this._checkResponse)
 	}
 
 	deleteLike(id) {
@@ -89,37 +57,22 @@ class Api {
 				authorization: this._token,
 				'Content-Type': 'application/json',
 			},
-		}).then((res) => {
-			if (!res.ok) {
-				return Promise.reject(`Ошибка: ${res.status}`)
-			}
-			return res.json()
-		})
-		/*.catch(err => console.log('Ошибка. Запрос не выполнен: ', err))*/
+		}).then(this._checkResponse)
 	}
 
 	deleteCard(id) {
-		// https://mesto.nomoreparties.co/v1/cohortId/cards/cardId
 		return fetch(`${this._address}/cards/${id}`, {
 			method: 'DELETE',
 			headers: {
 				authorization: this._token,
 				'Content-Type': 'application/json',
 			},
-		}).then((res) => {
-			if (!res.ok) {
-				return Promise.reject(`Ошибка: ${res.status}`)
-			}
-			return res.json()
-		})
-		/*.catch(err => console.log('Ошибка. Запрос не выполнен: ', err))*/
+		}).then(this._checkResponse)
 	}
 
 	// DELETE
 
 	setMyCard(item) {
-		// console.log('https://mesto.nomoreparties.co/v1/cohortId/cards')
-		// console.log(`${this._address}/cards`)
 		return fetch(`${this._address}/cards`, {
 			method: 'POST',
 			headers: {
@@ -130,17 +83,7 @@ class Api {
 				name: item.name,
 				link: item.link,
 			}),
-		}).then((res) => {
-			console.log(res)
-			if (!res.ok) {
-				return Promise.reject(`Ошибка: ${res.status}`)
-			}
-			return res.json()
-		})
-
-		/* .catch((err) => {
-        console.log('Ошибка. Запрос не выполнен: ', err);
-      })*/
+		}).then(this._checkResponse)
 	}
 
 	setUserAvatar(data) {
@@ -153,16 +96,13 @@ class Api {
 			body: JSON.stringify({
 				avatar: data.link,
 			}),
-		}).then((res) => {
-			if (!res.ok) {
-				return Promise.reject(`Ошибка: ${res.status}`)
-			}
-			return res.json()
-		})
-
-		/* .catch((err) => {
-        console.log('Ошибка. Запрос не выполнен: ', err);
-      })*/
+		}).then(this._checkResponse)
+	}
+	_checkResponse(res) {
+		if (!res.ok) {
+			return Promise.reject(`Ошибка: ${res.status}`)
+		}
+		return res.json()
 	}
 }
 

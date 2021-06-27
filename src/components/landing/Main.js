@@ -1,5 +1,5 @@
 import React from 'react'
-import ImgOenButton from '../../images/Vector_plus.svg'
+import imgOenButton from '../../images/Vector_plus.svg'
 import PenItem from '../../images/photem.png'
 import api from '../../utils/Api'
 import Card from './Card'
@@ -11,18 +11,13 @@ function Main(props) {
 	const [cards, setCards] = React.useState([])
 
 	React.useEffect(() => {
-		api.getUserData().then((res) => {
-			setUserName(res.name)
-			setUserDescription(res.about)
-			setUserAvatar(res.avatar)
-		})
-	}, [])
-	React.useEffect(() => {
 		api
 			.getFullPageInfo()
 			.then(([cardData, userData]) => {
-				setUserName(userData.name)
 				setCards(cardData)
+				setUserName(userData.name)
+				setUserDescription(userData.about)
+				setUserAvatar(userData.avatar)
 			})
 			.catch((err) => console.log(err))
 	}, [])
@@ -35,7 +30,7 @@ function Main(props) {
 						onClick={props.onEditAvatar}
 						src={userAvatar}
 						alt="фото пользователя"
-						style={{ backgroundImage: `url(${userAvatar})` }}
+						//style={{ backgroundImage: `url(${userAvatar})` }}
 						className="profile__photo"
 					/>
 					<div className="profile__overlay ">
@@ -63,7 +58,7 @@ function Main(props) {
 					className="profile__plus"
 					type="button"
 				>
-					<img src={ImgOenButton} alt="кнопка плюс" />
+					<img src={imgOenButton} alt="кнопка плюс" />
 				</button>
 			</section>
 

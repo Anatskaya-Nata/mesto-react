@@ -1,10 +1,9 @@
-.popup__container_theme_image{
-width: auto;
-height:auto;
-flex-direction: column;
-margin: auto;
-justify-content: center;
-align-items: flex-start;
-position: relative;
+.popup__container_theme_image {
+	width: auto;
+	height: auto;
+	flex-direction: column;
+	margin: auto;
+	justify-content: center;
+	align-items: flex-start;
+	position: relative;
 }
-

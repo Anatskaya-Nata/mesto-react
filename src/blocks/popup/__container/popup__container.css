@@ -1,10 +1,8 @@
-.popup__container{
-   /*padding: 25px 22px 25px 22px;*/
-    
-    margin: auto 19px auto 19px;
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
+.popup__container {
+	/*padding: 25px 22px 25px 22px;*/
 
-    
+	margin: auto 19px auto 19px;
+	display: flex;
+	align-items: flex-start;
+	justify-content: center;
 }
