@@ -1,4 +1,6 @@
+import React from 'react'
 import deliteButton from '../../images/delete.svg'
+import { CurrentUserContext } from '../../contexts/CurrentUserContext'
 
 function Card(props) {
 	function handleCardClick() {

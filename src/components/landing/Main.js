@@ -1,26 +1,16 @@
 import React from 'react'
 import imgOenButton from '../../images/Vector_plus.svg'
 import PenItem from '../../images/photem.png'
-import api from '../../utils/Api'
+//import api from '../../utils/Api'
+import { CurrentUserContext } from '../../contexts/CurrentUserContext'
+import { CardContext } from '../../contexts/CardContext'
 import Card from './Card'
 
 function Main(props) {
-	const [userName, setUserName] = React.useState('')
-	const [userDescription, setUserDescription] = React.useState('')
-	const [userAvatar, setUserAvatar] = React.useState('')
-	const [cards, setCards] = React.useState([])
-
-	React.useEffect(() => {
-		api
-			.getFullPageInfo()
-			.then(([cardData, userData]) => {
-				setCards(cardData)
-				setUserName(userData.name)
-				setUserDescription(userData.about)
-				setUserAvatar(userData.avatar)
-			})
-			.catch((err) => console.log(err))
-	}, [])
+	const cards = React.useContext(CardContext)
+	const currentUser = React.useContext(CurrentUserContext)
+	console.log(cards)
+	console.log(currentUser)
 
 	return (
 		<main className="content page__content">
@@ -28,7 +18,7 @@ function Main(props) {
 				<div className="profile__container">
 					<img
 						onClick={props.onEditAvatar}
-						src={userAvatar}
+						src={currentUser.avatar}
 						alt="фото пользователя"
 						//style={{ backgroundImage: `url(${userAvatar})` }}
 						className="profile__photo"
@@ -40,7 +30,7 @@ function Main(props) {
 
 				<div className="profile__block">
 					<div className="profile__info">
-						<h1 className="profile__name">{userName}</h1>
+						<h1 className="profile__name">{currentUser.name}</h1>
 
 						<button
 							onClick={props.onEditProfile}
@@ -49,7 +39,7 @@ function Main(props) {
 							type="button"
 						></button>
 					</div>
-					<p className="profile__job">{userDescription}</p>
+					<p className="profile__job">{currentUser.about}</p>
 				</div>
 
 				<button
