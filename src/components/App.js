@@ -15,6 +15,40 @@ function App() {
 	const [isEditProfilePopupOpen, setisEditProfilePopupOpen] = React.useState(false)
 	const [isImagePopupOpen, setImagePopupOpen] = React.useState(false)
 	const [selectedCard, setSelectedCard] = React.useState({})
+	const [cardDelete, setCardDelete] = React.useState({})
+
+	function handleCardLike(card) {
+		// Снова проверяем, есть ли уже лайк на этой карточке
+		const isLiked = card.likes.some((i) => i._id === currentUser._id)
+
+		// Отправляем запрос в API и получаем обновлённые данные карточки
+		api
+			.changeLikeCardStatus(card._id, !isLiked)
+			.then((newCard) => {
+				// Формируем новый массив на основе имеющегося, подставляя в него новую карточку
+				const newCards = cards.map((c) => (c._id === card._id ? newCard : c))
+				// Обновляем стейт
+				setCards(newCards)
+			})
+			.catch((err) => {
+				console.log(`Не удалось поставить лайк. ${err}`)
+			})
+	}
+
+	function handleCardDelete(card) {
+		// Определяем, являемся ли мы владельцем текущей карточки
+		const isOwn = card.owner._id === currentUser._id
+		//Cоздаем копию массива, исключив из него удалённую карточку.
+		api
+			.deleteCard(card._id, isOwn)
+			.then(() => {
+				const newArr = cards.filter((c) => c._id !== card._id)
+				setCards(newArr)
+			})
+			.catch((err) => {
+				console.log(`Ошибка при удалении карточки. ${err}`)
+			})
+	}
 
 	const handleEditAvatarClick = () => {
 		setisEditAvatarPopupOpen((isEditAvatarPopupOpen) => !isEditAvatarPopupOpen)
@@ -42,9 +76,6 @@ function App() {
 	const [cards, setCards] = React.useState([])
 	const [currentUser, setCurrentUser] = React.useState('')
 
-	console.log(currentUser)
-	console.log(cards)
-
 	React.useEffect(() => {
 		api
 			.getFullPageInfo()
@@ -66,6 +97,8 @@ function App() {
 							onAddPlace={handleAddPlaceClick}
 							onEditAvatar={handleEditAvatarClick}
 							onCardClick={handleCardClick}
+							onCardLike={handleCardLike}
+							onCardDelete={handleCardDelete}
 						/>
 
 						<Footer />
