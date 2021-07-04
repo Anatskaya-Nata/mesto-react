@@ -1,8 +1,8 @@
 import React from 'react'
-import imgOenButton from '../../images/Vector_plus.svg'
-import PenItem from '../../images/photem.png'
-import { CurrentUserContext } from '../../contexts/CurrentUserContext'
-import { CardContext } from '../../contexts/CardContext'
+import imgOenButton from '../images/Vector_plus.svg'
+import PenItem from '../images/photem.png'
+import { CurrentUserContext } from '../contexts/CurrentUserContext'
+import { CardContext } from '../contexts/CardContext'
 import Card from './Card'
 
 function Main(props) {
