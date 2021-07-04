@@ -1,7 +1,6 @@
 import React from 'react'
 import imgOenButton from '../../images/Vector_plus.svg'
 import PenItem from '../../images/photem.png'
-import api from '../../utils/Api'
 import { CurrentUserContext } from '../../contexts/CurrentUserContext'
 import { CardContext } from '../../contexts/CardContext'
 import Card from './Card'

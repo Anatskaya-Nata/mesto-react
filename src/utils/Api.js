@@ -105,9 +105,11 @@ class Api {
 			},
 			body: JSON.stringify({
 				avatar: data.link,
+				//avatar,
 			}),
 		}).then(this._checkResponse)
 	}
+
 	_checkResponse(res) {
 		if (!res.ok) {
 			return Promise.reject(`Ошибка: ${res.status}`)
