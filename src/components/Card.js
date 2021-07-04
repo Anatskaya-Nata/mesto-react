@@ -19,15 +19,16 @@ function Card(props) {
 		isLiked ? 'gallary__icon_active ' : ''
 	}`
 
+	function handleDeleteClick() {
+		props.onCardDelete(props.card)
+	}
+
 	function handleCardClick() {
 		props.onCardClick(props.card)
 		console.log(props.card)
 	}
 	const handleLikeClick = () => {
 		props.onCardLike(props.card)
-	}
-	function handleDeleteClick() {
-		props.onCardDelete(props.card)
 	}
 
 	return (

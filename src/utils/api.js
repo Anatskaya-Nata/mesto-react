@@ -9,13 +9,6 @@ class Api {
 		return Promise.all([this.getCards(), this.getUserData()])
 	}
 
-	getCards() {
-		return fetch(`${this._address}/cards`, {
-			headers: {
-				authorization: this._token,
-			},
-		}).then(this._checkResponse)
-	}
 	getUserData() {
 		return fetch(`${this._address}/users/me`, {
 			method: 'GET',
@@ -25,6 +18,13 @@ class Api {
 		}).then(this._checkResponse)
 	}
 
+	getCards() {
+		return fetch(`${this._address}/cards`, {
+			headers: {
+				authorization: this._token,
+			},
+		}).then(this._checkResponse)
+	}
 	setUserData(data) {
 		return fetch(`${this._address}/users/me`, {
 			method: 'PATCH',
