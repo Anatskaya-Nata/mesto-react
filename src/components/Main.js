@@ -20,7 +20,7 @@ function Main(props) {
 					<img
 						onClick={props.onEditAvatar}
 						src={currentUser.avatar}
-						alt="фото пользователя"
+						alt="фото юзера"
 						//style={{ backgroundImage: `url(${userAvatar})` }}
 						className="profile__photo"
 					/>
