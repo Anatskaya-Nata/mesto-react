@@ -10,6 +10,7 @@ import { CurrentUserContext } from '../contexts/CurrentUserContext'
 import { CardContext } from '../contexts/CardContext'
 import EditProfilePopup from './landing/EditProfilePopup'
 import EditAvatarPopup from './landing/EditAvatarPopup'
+import AddPlacePopup from './landing/AddPlacePopup'
 
 function App() {
 	const [isEditAvatarPopupOpen, setisEditAvatarPopupOpen] = React.useState(false)
@@ -88,6 +89,18 @@ function App() {
 			})
 	}
 
+	function handleAddPlaceSubmit({ name, link }) {
+		api
+			.setMyCard({ name, link })
+			.then((newCard) => {
+				setCards([newCard, ...cards])
+				closeAllPopups()
+			})
+			.catch((err) => {
+				console.log(`Ошибка при загрузке новой карточки. ${err}`)
+			})
+	}
+
 	const handleEditAvatarClick = () => {
 		setisEditAvatarPopupOpen((isEditAvatarPopupOpen) => !isEditAvatarPopupOpen)
 	}
@@ -137,37 +150,10 @@ function App() {
 							onClose={closeAllPopups}
 							onUpdateAvatar={handleUpdateAvatar}
 						/>
-						<PopupWithForm
-							name="place"
-							title="Новое место"
-							textButton="Создать"
+						<AddPlacePopup
 							isOpen={isAddPlacePopupOpen}
 							onClose={closeAllPopups}
-							children={
-								<>
-									<input
-										id="place-input"
-										type="text"
-										name="place"
-										placeholder=" Название"
-										required
-										minLength="2"
-										maxLength="30"
-										className="popup__info popup__info_input_place"
-									/>
-									<span className="popup__info-error place-input-error "></span>
-
-									<input
-										id="link-input"
-										type="url"
-										name="link"
-										placeholder="Ссылка на картинку"
-										required
-										className="popup__info popup__info_input_link"
-									/>
-									<span className="popup__info-error link-input-error"></span>
-								</>
-							}
+							onAddPlace={handleAddPlaceSubmit}
 						/>
 						<PopupWithForm name="approval" title="Вы уверены? " textButton="Да" />
 
