@@ -1,4 +1,4 @@
-class api {
+class Api {
 	constructor({ address, token, groupID }) {
 		this._address = address
 		this._token = token
