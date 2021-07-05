@@ -39,6 +39,7 @@ function AddPlacePopup(props) {
 						minLength="2"
 						maxLength="30"
 						className="popup__info popup__info_input_place"
+						value={name || ''}
 						onChange={handleChangeName}
 					/>
 					<span className="popup__info-error place-input-error "></span>
@@ -50,6 +51,7 @@ function AddPlacePopup(props) {
 						placeholder="Ссылка на картинку"
 						required
 						className="popup__info popup__info_input_link"
+						value={link || ''}
 						onChange={handleChangeLink}
 					/>
 					<span className="popup__info-error link-input-error"></span>
