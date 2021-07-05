@@ -22,7 +22,7 @@ function App() {
 	const [selectedCard, setSelectedCard] = React.useState({})
 	const [deletedCard, setDeletedCard] = React.useState({})
 	const [cards, setCards] = React.useState([])
-	const [currentUser, setCurrentUser] = React.useState('')
+	const [currentUser, setCurrentUser] = React.useState({})
 	const [isPopupLoading, setIsPopupLoading] = React.useState(false)
 
 	React.useEffect(() => {
